@@ -155,7 +155,6 @@ echo "<a class=\"btn btn-success\" href=\"submit.php?id=$row[id]\">Submit Your C
 <div class="">
 
 <b>Beta Version-2016</b><br>
-<b>Developed By Ashadullah Shawon</b>
 
 </div>
 </div>
