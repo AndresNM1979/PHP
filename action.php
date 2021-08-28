@@ -8,7 +8,7 @@ $pass=$_POST['password'];
 $password=md5($pass);
 
 $query="INSERT into user(name,pass,status,email) VALUES('$user','$password','user','$email')";
-$sq=mysqli_query($con,$query);
+$sq=postgresi_query($con,$query);
 
 if($sq)
 {
@@ -31,8 +31,8 @@ if($sq)
             $mail->isSMTP();                                      // Set mailer to use SMTP
             $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = 'ruetoj@gmail.com';                 // SMTP username
-            $mail->Password = 'shawonruet';                           // SMTP password
+            $mail->Username = 'andres.natera@viewnext.com';                 // SMTP username
+            $mail->Password = '';                           // SMTP password
             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 587;                                    // TCP port to connect to
 
@@ -55,7 +55,7 @@ if($sq)
 
             
 
-               $mail->setFrom('ruetoj@gmail.com', 'Ruet OJ');
+               $mail->setFrom('andres.natera@viewnext.com', 'Andres NM');
 
               
   
