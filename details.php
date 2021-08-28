@@ -15,9 +15,9 @@ if(isset($_SESSION['un']))
   $username=$_SESSION['un'];
 }
 
-$mysql="SELECT  status from user WHERE name='$username'";
-$snd=mysqli_query($con,$mysql);
-$arrow=mysqli_fetch_array($snd);
+$postgres="SELECT  status from user WHERE name='$username'";
+$snd=mpostgresi_query($con,$postgres);
+$arrow=postgresi_fetch_array($snd);
 
 $st=$arrow['status'];
 
@@ -39,13 +39,13 @@ if(isset($_GET['id']))
 {
 
  $getcon="SELECT cname from element WHERE pbid='$pid'";
- $sendcon=mysqli_query($con,$getcon);
- $namerow=mysqli_fetch_array($sendcon);
+ $sendcon=postgresi_query($con,$getcon);
+ $namerow=postgresi_fetch_array($sendcon);
  $coname=$namerow['cname'];
 
  $fowner="SELECT  owner from rapl_oj_contest where cname='$coname'";
- $sendit=mysqli_query($con,$fowner);
- $frow=mysqli_fetch_array($sendit);
+ $sendit=postgresi_query($con,$fowner);
+ $frow=postgresi_fetch_array($sendit);
  $owner=$frow['owner'];
 
  if($username==$owner)
@@ -245,7 +245,7 @@ var x = setInterval(function() {
 
 require_once("connection.php");
 
-date_default_timezone_set("Asia/Dhaka");
+date_default_timezone_set("europe/madrid");
 
 if(isset($_GET['id']))
 {
@@ -254,9 +254,9 @@ if(isset($_GET['id']))
 
 $q3="SELECT * FROM element WHERE pbid='$des'";
 
-$sq3=mysqli_query($con,$q3);
+$sq3=postgresi_query($con,$q3);
 
-$r1=mysqli_fetch_array($sq3);
+$r1=postgresi_fetch_array($sq3);
 
   $cnt=$r1['cname'];
 
@@ -266,16 +266,16 @@ echo("Problem Name: $r1[pbname]<br><br> Problem ID: $r1[pbid]<br><br>Time Limit:
   $conid=$r1['id'];
 
    $q3="SELECT * FROM rapl_oj_contest WHERE id='$conid'";
-    $sq3=mysqli_query($con,$q3);
+    $sq3=postgresi_query($con,$q3);
 
       $q4="SELECT TIME_FORMAT(end_at,'%H') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
        $q5="SELECT TIME_FORMAT(end_at,'%i') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
         $q6="SELECT TIME_FORMAT(end_at,'%s') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
 
 
-      $sq4=mysqli_query($con,$q4);
-      $sq5=mysqli_query($con,$q5);
-      $sq6=mysqli_query($con,$q6);
+      $sq4=postgresi_query($con,$q4);
+      $sq5=postgresi_query($con,$q5);
+      $sq6=postgresi_query($con,$q6);
       
       
        $i=0;
@@ -283,7 +283,7 @@ echo("Problem Name: $r1[pbname]<br><br> Problem ID: $r1[pbid]<br><br>Time Limit:
 
       
    
-  while($row=mysqli_fetch_array($sq3))
+  while($row=postgresi_fetch_array($sq3))
     {
       $d=date("Y-m-d");
       $t=date("H:i:s");
@@ -295,9 +295,9 @@ echo("Problem Name: $r1[pbname]<br><br> Problem ID: $r1[pbid]<br><br>Time Limit:
 
       $i++;
       $demo="demo".$i;
-      $nr=mysqli_fetch_array($sq4);
-      $nm=mysqli_fetch_array($sq5);
-      $ns=mysqli_fetch_array($sq6);
+      $nr=postgresi_fetch_array($sq4);
+      $nm=postgresi_fetch_array($sq5);
+      $ns=postgresi_fetch_array($sq6);
       
       $shr=$nr['end_at'];
       $shm=$nm['end_at'];
@@ -414,9 +414,9 @@ if(isset($_GET['name']) && isset($_GET['cod']))
 
   $q3="SELECT * FROM element WHERE pbname='$des' AND id='$cod'";
 
-$sq3=mysqli_query($con,$q3);
+$sq3=postgresi_query($con,$q3);
 
-$r1=mysqli_fetch_array($sq3);
+$r1=postgresi_fetch_array($sq3);
 
 
 echo("Problem Name: $r1[pbname]<br><br> Problem ID: $r1[pbid]<br><br>Time Limit: $r1[tlimit] Seconds<br><br> Problem Details<br><br><textarea class=\"form-control\" rows=\"30\" cols=\"95\" readonly>$r1[pbdes]</textarea><br><br>Problem Setter: $r1[pbauthor]<br><br>");
@@ -427,16 +427,16 @@ echo("Problem Name: $r1[pbname]<br><br> Problem ID: $r1[pbid]<br><br>Time Limit:
 
 
    $q3="SELECT * FROM rapl_oj_contest WHERE id='$conid'";
-    $sq3=mysqli_query($con,$q3);
+    $sq3=postgresi_query($con,$q3);
 
       $q4="SELECT TIME_FORMAT(end_at,'%H') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
        $q5="SELECT TIME_FORMAT(end_at,'%i') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
         $q6="SELECT TIME_FORMAT(end_at,'%s') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
 
 
-      $sq4=mysqli_query($con,$q4);
-      $sq5=mysqli_query($con,$q5);
-      $sq6=mysqli_query($con,$q6);
+      $sq4=postgresi_query($con,$q4);
+      $sq5=mpostgresi_query($con,$q5);
+      $sq6=postgresi_query($con,$q6);
       
      
      
@@ -445,7 +445,7 @@ echo("Problem Name: $r1[pbname]<br><br> Problem ID: $r1[pbid]<br><br>Time Limit:
 
       
    
-  while($row=mysqli_fetch_array($sq3))
+  while($row=postgresi_fetch_array($sq3))
     {
       $d=date("Y-m-d");
       $t=date("H:i:s");
@@ -457,9 +457,9 @@ echo("Problem Name: $r1[pbname]<br><br> Problem ID: $r1[pbid]<br><br>Time Limit:
 
       $i++;
       $demo="demo".$i;
-      $nr=mysqli_fetch_array($sq4);
-      $nm=mysqli_fetch_array($sq5);
-      $ns=mysqli_fetch_array($sq6);
+      $nr=postgresi_fetch_array($sq4);
+      $nm=postgresi_fetch_array($sq5);
+      $ns=postgresi_fetch_array($sq6);
       
       $shr=$nr['end_at'];
       $shm=$nm['end_at'];
@@ -572,9 +572,9 @@ if(isset($_GET['id']))
 
 $q3="SELECT * FROM element WHERE pbid='$des'";
 
-$sq3=mysqli_query($con,$q3);
+$sq3=postgresi_query($con,$q3);
 
-$r1=mysqli_fetch_array($sq3);
+$r1=postgresi_fetch_array($sq3);
 
 
 $cnt=$r1['cname'];
@@ -583,16 +583,16 @@ $cnt=$r1['cname'];
 
   
  $q3="SELECT * FROM rapl_oj_contest WHERE id='$conid'";
-    $sq3=mysqli_query($con,$q3);
+    $sq3=postgresi_query($con,$q3);
 
       $q4="SELECT TIME_FORMAT(end_at,'%H') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
        $q5="SELECT TIME_FORMAT(end_at,'%i') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
         $q6="SELECT TIME_FORMAT(end_at,'%s') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
 
 
-      $sq4=mysqli_query($con,$q4);
-      $sq5=mysqli_query($con,$q5);
-      $sq6=mysqli_query($con,$q6);
+      $sq4=postgresi_query($con,$q4);
+      $sq5=postgresi_query($con,$q5);
+      $sq6=postgresi_query($con,$q6);
       
 
       
@@ -602,7 +602,7 @@ $cnt=$r1['cname'];
 
       
    
-  while($row=mysqli_fetch_array($sq3))
+  while($row=postgresi_fetch_array($sq3))
     {
       $d=date("Y-m-d");
       $t=date("H:i:s");
@@ -614,9 +614,9 @@ $cnt=$r1['cname'];
 
       $i++;
       $demo="demo".$i;
-      $nr=mysqli_fetch_array($sq4);
-      $nm=mysqli_fetch_array($sq5);
-      $ns=mysqli_fetch_array($sq6);
+      $nr=postgresi_fetch_array($sq4);
+      $nm=postgresi_fetch_array($sq5);
+      $ns=postgresi_fetch_array($sq6);
       
       $shr=$nr['end_at'];
       $shm=$nm['end_at'];
@@ -730,17 +730,17 @@ else
 
       $q10="SELECT * FROM element WHERE pbname='$des' AND id='$cod'";
 
-      $sq10=mysqli_query($con,$q10);
+      $sq10=postgresi_query($con,$q10);
  
 
-      $r8=mysqli_fetch_array($sq10);
+      $r8=postgresi_fetch_array($sq10);
 
       $conid=$r1['id'];
 
 
      $q12="SELECT * FROM rapl_oj_contest WHERE id='$conid'";
-      $sq12=mysqli_query($con,$q12);
-      $oc=mysqli_fetch_array($sq12);
+      $sq12=postgresi_query($con,$q12);
+      $oc=postgresi_fetch_array($sq12);
 
 
 
