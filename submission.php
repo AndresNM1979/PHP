@@ -114,11 +114,11 @@ if(!isset($uo))
    $ch=0;
    error_reporting(0);
    $show="SELECT * FROM submission ORDER BY sid DESC";
-   $sts=mysqli_query($con,$show);
+   $sts=postgresi_query($con,$show);
 
 
 
-while($row=mysqli_fetch_array($sts))
+while($row=postgresi_fetch_array($sts))
 {
 
 	echo "<tr><td><a href=\"showcode.php?id=$row[sid]&nm=$row[sname]\">$row[sid]</a></td><td><a href=\"profile.php?user=$row[sname]\">$row[sname]</a></td><td><a href=\"description.php?name=$row[pbname]\">$row[pbname]</a></td><td>$row[verdict]</td></tr>";
@@ -163,12 +163,12 @@ else
 $sql="INSERT INTO submission VALUES('','$username','$result','$pname') ";
 $show="SELECT * FROM submission ORDER BY sid DESC";
 
-$stq=mysqli_query($con,$sql);
-$sts=mysqli_query($con,$show);
+$stq=postgresi_query($con,$sql);
+$sts=postgresi_query($con,$show);
 
 
 
-while($row=mysqli_fetch_array($sts))
+while($row=postgresi_fetch_array($sts))
 {
 
 	
@@ -206,7 +206,6 @@ echo "<tr><td><a href=\"showcode.php?id=$row[sid]&nm=$row[sname]\">$row[sid]</a>
 <div class="fm">
 
 <b>Beta Version-2016</b><br>
-<b>Developed By Ashadullah Shawon</b>
 
 </div>
 </div>
