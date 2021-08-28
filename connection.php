@@ -10,7 +10,7 @@ $db="problem";
 
 if(!$con)
 {
-	print("Not Connected<br>".postgre_error());
+	print("Not Connected<br>".postgres_error());
 
 }
 else
