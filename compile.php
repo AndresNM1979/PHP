@@ -172,7 +172,6 @@ if(isset($_SESSION['un']))
 <div class="fm">
 
 <b>Beta Version-2016</b><br>
-<b>Developed By Ashadullah Shawon</b>
 
 </div>
 </div>
