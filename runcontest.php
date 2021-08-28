@@ -115,8 +115,8 @@ $us=$_SESSION['un'];
 
 
 $isql="SELECT tc FROM element WHERE pbid='$pid'";
-$si=mysqli_query($con,$isql);
-$r4=mysqli_fetch_array($si);
+$si=postgresi_query($con,$isql);
+$r4=postgresi_fetch_array($si);
 
 $input=$r4['tc'];
 
@@ -143,8 +143,8 @@ $response = run($hackerearth,$config);     // Use this $response the way you wan
 
 $sql="SELECT output FROM element WHERE pbid='$pid'";
 
-$sq=mysqli_query($con,$sql);
-$row=mysqli_fetch_array($sq);
+$sq=postgresi_query($con,$sql);
+$row=postgresi_fetch_array($sq);
 $str="";
 $ch=1;
 
@@ -200,12 +200,12 @@ $nsql="INSERT into code VALUES('$us','$source','')";
 $usql="UPDATE element SET uoutput='$str' WHERE pbid='$pid'";
 $csql="SELECT uoutput FROM element WHERE pbid='$pid'";
 $q3="SELECT id FROM code ORDER BY id DESC ";
-$snq=mysqli_query($con,$nsql);
-$snd=mysqli_query($con,$usql);
-$cnd=mysqli_query($con,$csql);
-$sq3=mysqli_query($con,$q3);
-$r2=mysqli_fetch_array($cnd);
-$r4=mysqli_fetch_array($sq3);
+$snq=postgresi_query($con,$nsql);
+$snd=postgresi_query($con,$usql);
+$cnd=postgresi_query($con,$csql);
+$sq3=postgresi_query($con,$q3);
+$r2=postgresi_fetch_array($cnd);
+$r4=postgresi_fetch_array($sq3);
 
 
 
@@ -308,7 +308,6 @@ else
 <div class="fm">
 
 <b>Beta Version-2016</b><br>
-<b>Developed By Ashadullah Shawon</b>
 
 </div>
 </div>
