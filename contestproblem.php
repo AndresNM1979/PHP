@@ -19,7 +19,7 @@ if(isset($_SESSION['un']))
 
 $postgres="SELECT  status from user WHERE name='$username'";
 $snd=postgresi_query($con,$postgres);
-$arrow=mpostgresi_fetch_array($snd);
+$arrow=postgresi_fetch_array($snd);
 
 $st=$arrow['status'];
 
