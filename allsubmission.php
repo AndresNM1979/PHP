@@ -450,7 +450,6 @@ while($row=postgresi_fetch_array($sts))
 <div class="">
 
 <b>Beta Version-2016</b><br>
-<b>Developed By Ashadullah Shawon</b>
 
 </div>
 </div>
