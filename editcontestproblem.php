@@ -14,9 +14,9 @@ if(isset($_SESSION['un']))
 	$username=$_SESSION['un'];
 }
 
-$mysql="SELECT  status from user WHERE name='$username'";
-$snd=mysqli_query($con,$mysql);
-$arrow=mysqli_fetch_array($snd);
+$postgres="SELECT  status from user WHERE name='$username'";
+$snd=postgresi_query($con,$postgres);
+$arrow=postgresi_fetch_array($snd);
 
 $st=$arrow['status'];
 
@@ -42,13 +42,13 @@ if(isset($_GET['id']))
 {
 
  $getcon="SELECT cname from element WHERE pbid='$pid'";
- $sendcon=mysqli_query($con,$getcon);
- $namerow=mysqli_fetch_array($sendcon);
+ $sendcon=postgresi_query($con,$getcon);
+ $namerow=postgresi_fetch_array($sendcon);
  $coname=$namerow['cname'];
 
  $fowner="SELECT  owner from rapl_oj_contest where cname='$coname'";
- $sendit=mysqli_query($con,$fowner);
- $frow=mysqli_fetch_array($sendit);
+ $sendit=postgresi_query($con,$fowner);
+ $frow=postgresi_fetch_array($sendit);
  $owner=$frow['owner'];
 
  if($username==$owner)
@@ -147,8 +147,8 @@ if(isset($_GET['id']))
 require_once("connection.php");
 
 $fetch="SELECT * from element where pbid='$pid'";
-$sfetch=mysqli_query($con,$fetch);
-$erow=mysqli_fetch_array($sfetch);
+$sfetch=postgresi_query($con,$fetch);
+$erow=postgresi_fetch_array($sfetch);
 $name=$erow['cname'];
 $cid=$erow['id'];
 $pbname=$erow['pbname'];
@@ -237,7 +237,6 @@ if(isset($_GET['fail']))
 <div class="">
 
 <b>Beta Version-2016</b><br>
-<b>Developed By Ashadullah Shawon</b>
 
 </div>
 </div>
