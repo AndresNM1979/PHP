@@ -263,7 +263,7 @@ if(isset($_GET['id']) && !isset($_GET['show']))
 
    $sql="SELECT sname, SUM(status) As Solved, SUM(point) As Points FROM submission Where cid='$conid' GROUP BY sname ORDER BY Solved DESC , Points DESC";
 
-   $send=mpostgresi_query($con,$sql);
+   $send=postgresi_query($con,$sql);
    $i=0;
    while($bow=postgresi_fetch_array($send))
    {
@@ -363,7 +363,7 @@ if(isset($_GET['id']) && isset($_GET['show']))
 
    $ts="SELECT DISTINCT sname, COUNT(verdict) AS verdict FROM ( SELECT * FROM submission where verdict='Accepted' AND cid='$conid' AND sname='$suser' GROUP BY pbname, sname)T1 GROUP BY sname";
 
-   $stss=mpostgresi_query($con,$ts);
+   $stss=postgresi_query($con,$ts);
 
    $solved=postgresi_fetch_array($stss);
 
@@ -482,7 +482,7 @@ if(isset($_POST['id']))
 
       $sq4=postgresi_query($con,$q4);
       $sq5=postgresi_query($con,$q5);
-      $sq6=mpostgresi_query($con,$q6);
+      $sq6=postgresi_query($con,$q6);
       
 
       
