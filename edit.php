@@ -92,8 +92,8 @@ if(isset($_GET['user']))
 <?php
 
 $sql="SELECT * FROM user WHERE name='$username'";
-$send=mysqli_query($con,$sql);
-$row=mysqli_fetch_array($send);
+$send=postgresi_query($con,$sql);
+$row=postgresi_fetch_array($send);
 $pass=$row['pass'];
 
 
@@ -138,7 +138,6 @@ $pass=$row['pass'];
 <div class="fm">
 
 <b>Beta Version-2016</b><br>
-<b>Developed By Ashadullah Shawon</b>
 
 </div>
 </div>
