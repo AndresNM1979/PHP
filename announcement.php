@@ -16,9 +16,9 @@ if(isset($_SESSION['un']))
 }
 
 
-$mysql="SELECT  status from user WHERE name='$username'";
-$snd=mysqli_query($con,$mysql);
-$arrow=mysqli_fetch_array($snd);
+$postgres="SELECT  status from user WHERE name='$username'";
+$snd=mpostgresi_query($con,$postgres);
+$arrow=postgresi_fetch_array($snd);
 
 $st=$arrow['status'];
 
@@ -125,8 +125,8 @@ if(isset($_POST['cr']))
 
 
  $fowner="SELECT  owner from rapl_oj_contest where cname='$cname'";
- $sendit=mysqli_query($con,$fowner);
- $frow=mysqli_fetch_array($sendit);
+ $sendit=postgresi_query($con,$fowner);
+ $frow=postgresi_fetch_array($sendit);
  $owner=$frow['owner'];
 
  if($username==$owner)
@@ -143,7 +143,7 @@ if(isset($_POST['cr']))
    {
 
      $query="INSERT INTO announcement(id,cname,des,aid) VALUES('$cid','$cname','$announcement','')";
-     $send=mysqli_query($con,$query);
+     $send=postgresi_query($con,$query);
 
      if($send)
      {
@@ -165,9 +165,9 @@ if(isset($_POST['cr']))
 else
 {
    $query="SELECT * from announcement";
-   $send=mysqli_query($con,$query);
+   $send=postgresi_query($con,$query);
   
-   while($row=mysqli_fetch_array($send))
+   while($row=postgresi_fetch_array($send))
    {
        $aid=$row['aid'];
        echo "<button class=\"btn btn-success\">$aid</button><button class=\"btn btn-primary\">$row[cname]</button> <div class=\"alert alert-info\">$row[des]</div><br>";
@@ -186,8 +186,8 @@ if(isset($_POST['up']))
    
 
  $fowner="SELECT  owner from rapl_oj_contest where cname='$cont'";
- $sendit=mysqli_query($con,$fowner);
- $frow=mysqli_fetch_array($sendit);
+ $sendit=postgresi_query($con,$fowner);
+ $frow=postgresi_fetch_array($sendit);
  $owner=$frow['owner'];
 
  if($username==$owner)
@@ -203,7 +203,7 @@ if(isset($_POST['up']))
    if($access==1)
    {
      $query="DELETE FROM announcement WHERE aid='$aid'";
-     $send=mysqli_query($con,$query);
+     $send=postgresi_query($con,$query);
 
      if($send)
      {
