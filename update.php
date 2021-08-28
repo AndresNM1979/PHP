@@ -101,7 +101,7 @@ if(isset($_POST['name']) || isset($_POST['email'])||isset($_POST['status']))
    $password=md5($status);
 
    $sql="UPDATE user SET name='$name', email='$email', pass='$password' WHERE name='$username'";
-   $send=mysqli_query($con,$sql);
+   $send=postgresi_query($con,$sql);
  
 
    echo "<div style=\"margin-left:250px;\" class=\"alert alert-success\">
@@ -144,7 +144,6 @@ if(isset($_POST['name']) || isset($_POST['email'])||isset($_POST['status']))
 <div class="fm">
 
 <b>Beta Version-2016</b><br>
-<b>Developed By Ashadullah Shawon</b>
 
 </div>
 </div>
