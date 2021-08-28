@@ -148,7 +148,7 @@ else
 $start=($page-1)*$per_page;
 
 $show="SELECT * FROM archieve limit $start,$per_page"; //start from 0 index
-$send=mpostgresi_query($con,$show);
+$send=postgresi_query($con,$show);
 
 
 
@@ -171,7 +171,7 @@ while($row=postgresi_fetch_array($send))
 
 	$tsub="SELECT COUNT(verdict) as sub from submissions WHERE pbname='$row[pbname]' GROUP BY pbname";
 	$stsub=postgresi_query($con,$tsub);
-	$ntsub=mpostgresi_fetch_array($stsub);
+	$ntsub=postgresi_fetch_array($stsub);
 
 
 	if($tsol>0)
@@ -265,7 +265,7 @@ if(!isset($pn))
 	$tsol=postgresi_num_rows($snumber);
 
 	$acn="SELECT COUNT(verdict) AS verdict from submissions WHERE verdict='Accepted' AND pbname='$row[pbname]' GROUP BY pbname";
-	$sacn=mpostgresi_query($con,$acn);
+	$sacn=postgresi_query($con,$acn);
 	$sol=postgresi_fetch_array($sacn);
 
 
