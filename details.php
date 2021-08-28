@@ -16,7 +16,7 @@ if(isset($_SESSION['un']))
 }
 
 $postgres="SELECT  status from user WHERE name='$username'";
-$snd=mpostgresi_query($con,$postgres);
+$snd=postgresi_query($con,$postgres);
 $arrow=postgresi_fetch_array($snd);
 
 $st=$arrow['status'];
@@ -435,7 +435,7 @@ echo("Problem Name: $r1[pbname]<br><br> Problem ID: $r1[pbid]<br><br>Time Limit:
 
 
       $sq4=postgresi_query($con,$q4);
-      $sq5=mpostgresi_query($con,$q5);
+      $sq5=postgresi_query($con,$q5);
       $sq6=postgresi_query($con,$q6);
       
      
