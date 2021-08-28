@@ -21,9 +21,9 @@ if(isset($_GET['user']))
 }
 
 //$qq='SELECT value from world';
-//$rq=mysqli_query($con,$qq);
+//$rq=postgresi_query($con,$qq);
 
-//$row=mysqli_fetch_array($rq);
+//$row=postgresi_fetch_array($rq);
 
 
 //$us=$row['value'];
@@ -33,13 +33,13 @@ $ac="SELECT COUNT(verdict) AS verdict FROM submission where verdict='Accepted' a
 $wa="SELECT COUNT(verdict) AS verdict FROM submission where verdict='Wrong Answer' and sname='$username'";
 $tle="SELECT COUNT(verdict) AS verdict FROM submission where verdict='Time Limit Exceed' and sname='$username'";
 
-$s1=mysqli_query($con,$ac);
-$s2=mysqli_query($con,$wa);
-$s3=mysqli_query($con,$tle);
+$s1=postgresi_query($con,$ac);
+$s2=postgresi_query($con,$wa);
+$s3=postgresi_query($con,$tle);
 
-//$nac=mysqli_fetch_array($s1);
-//$nwa=mysqli_fetch_array($s2);
-//$ntle=mysqli_fetch_array($s3);
+//$nac=postgresi_fetch_array($s1);
+//$nwa=postgresi_fetch_array($s2);
+//$ntle=postgresi_fetch_array($s3);
 
 $data=array();
 $result=array();
