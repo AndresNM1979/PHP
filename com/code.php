@@ -143,28 +143,28 @@ require_once("connection.php");
 date_default_timezone_set("Asia/Dhaka");
 
 $q3="SELECT * FROM rapl_oj_contest ORDER BY date_on DESC LIMIT 0,2";
-    $sq3=mysqli_query($con,$q3);
+    $sq3=postgresi_query($con,$q3);
 
         $q4="SELECT TIME_FORMAT(end_at,'%H') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
        $q5="SELECT TIME_FORMAT(end_at,'%i') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
         $q6="SELECT TIME_FORMAT(end_at,'%s') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
 
-      $sq4=mysqli_query($con,$q4);
-      $sq5=mysqli_query($con,$q5);
-      $sq6=mysqli_query($con,$q6);
+      $sq4=postgresi_query($con,$q4);
+      $sq5=postgresi_query($con,$q5);
+      $sq6=postgresi_query($con,$q6);
       
 
       
    
-  while($row=mysqli_fetch_array($sq3))
+  while($row=postgresi_fetch_array($sq3))
     {
       $d=date("Y-m-d");
       $t=date("H:i:s");
       $m=$row['start_at'];
 
-      $nr=mysqli_fetch_array($sq4);
-      $nm=mysqli_fetch_array($sq5);
-      $ns=mysqli_fetch_array($sq6);
+      $nr=postgresi_fetch_array($sq4);
+      $nm=postgresi_fetch_array($sq5);
+      $ns=postgresi_fetch_array($sq6);
       
       $shr=$nr['end_at'];
       $shm=$nm['end_at'];
@@ -254,7 +254,6 @@ $q3="SELECT * FROM rapl_oj_contest ORDER BY date_on DESC LIMIT 0,2";
 <div class="fm">
 
 <b>Beta Version-2016</b><br>
-<b>Developed By Ashadullah Shawon</b>
 
 </div>
 </div>
