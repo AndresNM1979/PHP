@@ -22,15 +22,15 @@ if(isset($_GET['user']))
   $us=$_GET['user'];
 
   //$query="UPDATE world SET value='$data'";
-  //$run=mysqli_query($con,$query);
+  //$run=postgresi_query($con,$query);
 
 }
 
 $admin=0;
 
-$mysql="SELECT  status from user WHERE name='$username'";
-$snd=mysqli_query($con,$mysql);
-$arrow=mysqli_fetch_array($snd);
+$postgres="SELECT  status from user WHERE name='$username'";
+$snd=postgresi_query($con,$postgres);
+$arrow=postgresi_fetch_array($snd);
 
 $st=$arrow['status'];
 
@@ -113,13 +113,13 @@ $ac="SELECT COUNT(verdict) AS verdict FROM submissions where verdict='Accepted' 
 $wa="SELECT COUNT(verdict) AS verdict FROM submissions where verdict='Wrong Answer' and sname='$us'";
 $tle="SELECT COUNT(verdict) AS verdict FROM submissions where verdict='Time Limit Exceed' and sname='$us'";
 
-$s1=mysqli_query($con,$ac);
-$s2=mysqli_query($con,$wa);
-$s3=mysqli_query($con,$tle);
+$s1=postgresi_query($con,$ac);
+$s2=postgresi_query($con,$wa);
+$s3=postgresi_query($con,$tle);
 
-//$nac=mysqli_fetch_array($s1);
-//$nwa=mysqli_fetch_array($s2);
-//$ntle=mysqli_fetch_array($s3);
+//$nac=postgresi_fetch_array($s1);
+//$nwa=postgresi_fetch_array($s2);
+//$ntle=postgresi_fetch_array($s3);
 
 $d=array();
 $result=array();
@@ -265,15 +265,15 @@ $(document).ready(function(){
 <?php
 
 $sql="SELECT * FROM user WHERE name='$username'";
-$send=mysqli_query($con,$sql);
-$row=mysqli_fetch_array($send);
+$send=postgresi_query($con,$sql);
+$row=postgresi_fetch_array($send);
 
 
 /*$ts="SELECT DISTINCT sname, COUNT(verdict) AS verdict FROM ( SELECT * FROM submission where verdict='Accepted' and sname='$username' GROUP BY pbname, sname)T1 GROUP BY sname";
 
-$sts=mysqli_query($con,$ts);
+$sts=postgresi_query($con,$ts);
 
-$solved=mysqli_fetch_array($sts);
+$solved=postgresi_fetch_array($sts);
 
 $tsolved=$solved['verdict'];
 
@@ -340,13 +340,13 @@ if($tsolved=="")
     require_once("connection.php");
 
     $his="SELECT DISTINCT cid FROM `submission` WHERE sname='$username'";
-    $shis=mysqli_query($con,$his);
-    while($chis=mysqli_fetch_array($shis))
+    $shis=postgresi_query($con,$his);
+    while($chis=postgresi_fetch_array($shis))
     {
         $conid=$chis['cid'];
         $mycon="SELECT * from rapl_oj_contest WHERE id='$conid'";
-        $sendcon=mysqli_query($con,$mycon);
-        $rhis=mysqli_fetch_array($sendcon);
+        $sendcon=postgresi_query($con,$mycon);
+        $rhis=postgresi_fetch_array($sendcon);
 
         echo "<tr><td>$rhis[id]</td><td><a href=\"contestproblem.php?name=$rhis[cname]\">$rhis[cname]</a></td><td>$rhis[date_on]</td><td><a class=\"btn btn-primary btn-xs \" href=\"contestsubmission.php?id=$rhis[id]&show=$username\">Show</a></td></tr>";
 
@@ -457,7 +457,6 @@ if($tsolved=="")
 <div class="">
 
 <b>Beta Version-2016</b><br>
-<b>Developed By Ashadullah Shawon</b>
 
 </div>
 </div>
