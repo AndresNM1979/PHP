@@ -17,9 +17,9 @@ if(isset($_SESSION['un']))
   $username=$_SESSION['un'];
 }
 
-$mysql="SELECT  status from user WHERE name='$username'";
-$snd=mysqli_query($con,$mysql);
-$arrow=mysqli_fetch_array($snd);
+$postgres="SELECT  status from user WHERE name='$username'";
+$snd=postgresi_query($con,$postgres);
+$arrow=mpostgresi_fetch_array($snd);
 
 $st=$arrow['status'];
 
@@ -44,8 +44,8 @@ if(isset($_GET['name']))
  {
 
    $fowner="SELECT  owner from rapl_oj_contest where cname='$coname'";
-   $sendit=mysqli_query($con,$fowner);
-   $frow=mysqli_fetch_array($sendit);
+   $sendit=postgresi_query($con,$fowner);
+   $frow=postgresi_fetch_array($sendit);
    $owner=$frow['owner'];
 
    if($username==$owner)
@@ -260,7 +260,7 @@ if(isset($_POST['up']))
 
 
     $update="UPDATE element SET pbname='$pn',pbdes='$des',pbauthor='$au',tc='$tc',output='$out',tlimit=$ptl WHERE pbid=$pbid";
-    $supdate=mysqli_query($con,$update);
+    $supdate=postgresi_query($con,$update);
 
     if($supdate)
     {
@@ -275,26 +275,26 @@ if(isset($_POST['up']))
     
     $q3="SELECT * FROM element WHERE cname='$contest'";
 
-    $sq3=mysqli_query($con,$q3);
+    $sq3=postgresi_query($con,$q3);
 
 
-while($row=mysqli_fetch_array($sq3))
+while($row=postgresi_fetch_array($sq3))
 {
    //echo("<a href=\"details.php?id=$row[pbid]\"><div class=\"pb\">$row[pbname]</div></a><br>");
   $problem_name=$row['pbname'];
 
   $number="SELECT verdict from submission WHERE pbname='$row[pbname]' and sname='$username' and verdict='Accepted' and cid='$cid'";
-  $snumber=mysqli_query($con,$number);
-  $tsol=mysqli_num_rows($snumber);
+  $snumber=postgresi_query($con,$number);
+  $tsol=postgresi_num_rows($snumber);
 
   $acn="SELECT COUNT(verdict) AS verdict from submission WHERE verdict='Accepted' AND pbname='$row[pbname]' AND cid='$cid' GROUP BY pbname";
-  $sacn=mysqli_query($con,$acn);
-  $sol=mysqli_fetch_array($sacn);
+  $sacn=postgresi_query($con,$acn);
+  $sol=postgresi_fetch_array($sacn);
 
 
   $tsub="SELECT COUNT(verdict) as sub from submission WHERE pbname='$row[pbname]' AND cid='$cid' GROUP BY pbname";
-  $stsub=mysqli_query($con,$tsub);
-  $ntsub=mysqli_fetch_array($stsub);
+  $stsub=postgresi_query($con,$tsub);
+  $ntsub=postgresi_fetch_array($stsub);
 
 
   if($tsol>0)
@@ -338,7 +338,7 @@ if(isset($_POST['del']))
 
 
     $delete="DELETE FROM element WHERE pbid=$pbid";
-    $sdelete=mysqli_query($con,$delete);
+    $sdelete=postgresi_query($con,$delete);
 
     if($sdelete)
     {
@@ -347,26 +347,26 @@ if(isset($_POST['del']))
 
      $q3="SELECT * FROM element WHERE cname='$contest'";
 
-    $sq3=mysqli_query($con,$q3);
+    $sq3=postgresi_query($con,$q3);
 
 
-while($row=mysqli_fetch_array($sq3))
+while($row=postgresi_fetch_array($sq3))
 {
    //echo("<a href=\"details.php?id=$row[pbid]\"><div class=\"pb\">$row[pbname]</div></a><br>");
   $problem_name=$row['pbname'];
 
   $number="SELECT verdict from submission WHERE pbname='$row[pbname]' and sname='$username' and verdict='Accepted' and cid='$cid'";
-  $snumber=mysqli_query($con,$number);
-  $tsol=mysqli_num_rows($snumber);
+  $snumber=postgresi_query($con,$number);
+  $tsol=postgresi_num_rows($snumber);
 
   $acn="SELECT COUNT(verdict) AS verdict from submission WHERE verdict='Accepted' AND pbname='$row[pbname]' AND cid='$cid' GROUP BY pbname";
-  $sacn=mysqli_query($con,$acn);
-  $sol=mysqli_fetch_array($sacn);
+  $sacn=postgresi_query($con,$acn);
+  $sol=postgresi_fetch_array($sacn);
 
 
   $tsub="SELECT COUNT(verdict) as sub from submission WHERE pbname='$row[pbname]' AND cid='$cid' GROUP BY pbname";
-  $stsub=mysqli_query($con,$tsub);
-  $ntsub=mysqli_fetch_array($stsub);
+  $stsub=postgresi_query($con,$tsub);
+  $ntsub=postgresi_fetch_array($stsub);
 
 
   if($tsol>0)
@@ -411,8 +411,8 @@ $out=$_POST['c4'];
 $ptl=$_POST['tll'];
 
    $fowner="SELECT  owner from rapl_oj_contest where id='$cid'";
-   $sendit=mysqli_query($con,$fowner);
-   $frow=mysqli_fetch_array($sendit);
+   $sendit=postgresi_query($con,$fowner);
+   $frow=postgresi_fetch_array($sendit);
    $owner=$frow['owner'];
 
    if($username==$owner)
@@ -436,27 +436,27 @@ if($access==1)
 $q2="INSERT into element  VALUES('$cid','$contest','$pn','$des','$au','$tc','$out','',NULL,'$ptl')";
 $q3="SELECT * FROM element WHERE cname='$contest'";
 
-$sq2=mysqli_query($con,$q2);
-$sq3=mysqli_query($con,$q3);
+$sq2=postgresi_query($con,$q2);
+$sq3=postgresi_query($con,$q3);
 
 
-while($row=mysqli_fetch_array($sq3))
+while($row=postgresi_fetch_array($sq3))
 {
    //echo("<a href=\"details.php?id=$row[pbid]\"><div class=\"pb\">$row[pbname]</div></a><br>");
   $problem_name=$row['pbname'];
 
   $number="SELECT verdict from submission WHERE pbname='$row[pbname]' and sname='$username' and verdict='Accepted' and cid='$cid'";
-  $snumber=mysqli_query($con,$number);
-  $tsol=mysqli_num_rows($snumber);
+  $snumber=postgresi_query($con,$number);
+  $tsol=postgresi_num_rows($snumber);
 
   $acn="SELECT COUNT(verdict) AS verdict from submission WHERE verdict='Accepted' AND pbname='$row[pbname]' AND cid='$cid' GROUP BY pbname";
-  $sacn=mysqli_query($con,$acn);
-  $sol=mysqli_fetch_array($sacn);
+  $sacn=postgresi_query($con,$acn);
+  $sol=postgresi_fetch_array($sacn);
 
 
   $tsub="SELECT COUNT(verdict) as sub from submission WHERE pbname='$row[pbname]' AND cid='$cid' GROUP BY pbname";
-  $stsub=mysqli_query($con,$tsub);
-  $ntsub=mysqli_fetch_array($stsub);
+  $stsub=postgresi_query($con,$tsub);
+  $ntsub=postgresi_fetch_array($stsub);
 
 
   if($tsol>0)
@@ -497,12 +497,12 @@ if(isset($_GET['name']))
   $n=$_GET['name'];
   $q3="SELECT * FROM element WHERE cname='$n'";
   $fcontest="SELECT id from rapl_oj_contest where cname='$n'";
-  $sf=mysqli_query($con,$fcontest);
-  $myrow=mysqli_fetch_array($sf);
+  $sf=postgresi_query($con,$fcontest);
+  $myrow=postgresi_fetch_array($sf);
 
-  $r=mysqli_query($con,$q3);
+  $r=postgresi_query($con,$q3);
 
-   while($row=mysqli_fetch_array($r))
+   while($row=postgresi_fetch_array($r))
    {
       //echo("<a href=\"details.php?id=$row[pbid]\"><div class=\"pb\">$row[pbname]</div></a><br>");
       $problem_name=$row['pbname'];
@@ -510,17 +510,17 @@ if(isset($_GET['name']))
 
 
       $number="SELECT verdict from submission WHERE pbname='$row[pbname]' and sname='$username' and verdict='Accepted' AND cid='$cid'";
-      $snumber=mysqli_query($con,$number);
-      $tsol=mysqli_num_rows($snumber);
+      $snumber=postgresi_query($con,$number);
+      $tsol=postgresi_num_rows($snumber);
 
       $acn="SELECT COUNT(verdict) AS verdict from submission WHERE verdict='Accepted' AND pbname='$row[pbname]' AND cid='$cid' GROUP BY pbname";
-      $sacn=mysqli_query($con,$acn);
-      $sol=mysqli_fetch_array($sacn);
+      $sacn=postgresi_query($con,$acn);
+      $sol=postgresi_fetch_array($sacn);
 
 
       $tsub="SELECT COUNT(verdict) as sub from submission WHERE pbname='$row[pbname]' AND cid='$cid' GROUP BY pbname";
-      $stsub=mysqli_query($con,$tsub);
-      $ntsub=mysqli_fetch_array($stsub);
+      $stsub=postgresi_query($con,$tsub);
+      $ntsub=postgresi_fetch_array($stsub);
 
 
       if($tsol>0)
@@ -548,14 +548,14 @@ if(isset($_GET['name']))
 
 echo "<h3 style=\"text-align:center;\">Announcement</h3><br>";
    $query="SELECT des from announcement where cname='$n'";
-   $send=mysqli_query($con,$query);
-   $nrow=mysqli_num_rows($send);
+   $send=postgresi_query($con,$query);
+   $nrow=postgresi_num_rows($send);
    
    if($nrow>0)
    {
 
 
-     while($arow=mysqli_fetch_array($send))
+     while($arow=postgresi_fetch_array($send))
      {
          echo "<div id=\"fn\" class=\"alert alert-info\">$arow[des]</div><br>";
      }
@@ -584,9 +584,9 @@ echo "<h3 style=\"text-align:center;\">Announcement</h3><br>";
 
 $q6="SELECT table_name FROM information_schema.tables where table_schema='problem' ";
 
-$res=mysqli_query($con,$q6);
+$res=postgresi_query($con,$q6);
 
-while($row=mysqli_fetch_array($res))
+while($row=postgresi_fetch_array($res))
 {
   error_reporting(0);
   echo '<form action="test.php" method="POST"> <input type="hidden" name="pb" value="' . htmlspecialchars($row[table_name]) . '" /><input type="submit" value=" ' . htmlspecialchars($row[table_name]) .'  "/></form>'."<br>";
@@ -623,17 +623,17 @@ if(isset($_GET['name']))
   $n=$_GET['name'];
   $q3="SELECT id FROM rapl_oj_contest WHERE cname='$n'";
 
-    $r=mysqli_query($con,$q3);
+    $r=postgresi_query($con,$q3);
 
-   $r1=mysqli_fetch_array($r);
+   $r1=postgresi_fetch_array($r);
 
    $conid=$r1['id'];
 
    $sql="SELECT sname, SUM(status) As Solved, SUM(point) As Points FROM submission Where cid='$conid' GROUP BY sname ORDER BY Solved DESC , Points DESC";
 
-   $send=mysqli_query($con,$sql);
+   $send=postgresi_query($con,$sql);
    $i=0;
-   while($bow=mysqli_fetch_array($send))
+   while($bow=postgresi_fetch_array($send))
    {
        $i++;
 
@@ -651,23 +651,23 @@ if(isset($_GET['name']))
   $conid=$r1['id'];
 
     $q3="SELECT * FROM rapl_oj_contest WHERE id='$conid'";
-    $sq3=mysqli_query($con,$q3);
+    $sq3=postgresi_query($con,$q3);
 
       $q4="SELECT TIME_FORMAT(end_at,'%H') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
        $q5="SELECT TIME_FORMAT(end_at,'%i') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
         $q6="SELECT TIME_FORMAT(end_at,'%s') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
 
 
-      $sq4=mysqli_query($con,$q4);
-      $sq5=mysqli_query($con,$q5);
-      $sq6=mysqli_query($con,$q6);
+      $sq4=postgresi_query($con,$q4);
+      $sq5=postgresi_query($con,$q5);
+      $sq6=postgresi_query($con,$q6);
       
       $i=0;
 
 
       
    
-  while($timerow=mysqli_fetch_array($sq3))
+  while($timerow=postgresi_fetch_array($sq3))
     {
       $d=date("Y-m-d");
       $t=date("H:i:s");
@@ -679,9 +679,9 @@ if(isset($_GET['name']))
 
       $i++;
       $demo="demo".$i;
-      $nr=mysqli_fetch_array($sq4);
-      $nm=mysqli_fetch_array($sq5);
-      $ns=mysqli_fetch_array($sq6);
+      $nr=postgresi_fetch_array($sq4);
+      $nm=postgresi_fetch_array($sq5);
+      $ns=postgresi_fetch_array($sq6);
       
       $shr=$nr['end_at'];
       $shm=$nm['end_at'];
