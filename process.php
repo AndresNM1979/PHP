@@ -12,9 +12,9 @@ $pw=md5($pw);
 
 $lq="SELECT * FROM `user` WHERE name='$uname' AND pass='$pw'";
 
-$sq=mysqli_query($con,$lq);
+$sq=postgresi_query($con,$lq);
 
-$row=mysqli_fetch_array($sq);
+$row=postgresi_fetch_array($sq);
 
 
 
