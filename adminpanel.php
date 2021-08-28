@@ -15,9 +15,9 @@ if(isset($_SESSION['un']))
 	$username=$_SESSION['un'];
 }
 
-$mysql="SELECT  status from user WHERE name='$username'";
-$snd=mysqli_query($con,$mysql);
-$arrow=mysqli_fetch_array($snd);
+$="SELECT  status from user WHERE name='$username'";
+$snd=postgresi_query($con,$postgres);
+$arrow=postgresi_fetch_array($snd);
 
 $st=$arrow['status'];
 
@@ -117,7 +117,7 @@ if(isset($_POST['name']) || isset($_POST['email'])||isset($_POST['status']))
    $status=$_POST['status'];
 
    $sql="UPDATE user SET  status='$status' WHERE name='$name'";
-   $send=mysqli_query($con,$sql);
+   $send=postgresi_query($con,$sql);
 
 
    if($send)
@@ -172,7 +172,6 @@ if(isset($_POST['name']) || isset($_POST['email'])||isset($_POST['status']))
 <div class="fm">
 
 <b>Beta Version-2016</b><br>
-<b>Developed By Ashadullah Shawon</b>
 
 </div>
 </div>
