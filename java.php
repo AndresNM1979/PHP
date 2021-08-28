@@ -107,7 +107,7 @@ $us=$_SESSION['un'];
 
 $isql="SELECT * FROM archieve WHERE id='$pid'";
 $si=postgresi_query($con,$isql);
-$r4=mpostgresi_fetch_array($si);
+$r4=postgresi_fetch_array($si);
 
 $limit=$r4['tlimit'];
 $limit=$limit+1;
