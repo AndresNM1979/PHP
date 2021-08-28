@@ -54,7 +54,7 @@ $q6="SELECT table_name FROM information_schema.tables where table_schema='proble
 
 $res=postgresi_query($con,$q6);
 
-while($row=mpostgresi_fetch_array($res))
+while($row=postgresi_fetch_array($res))
 {
 	error_reporting(0);
 	echo '<form action="test.php" method="POST"> <input type="hidden" name="pb" value="' . htmlspecialchars($row[table_name]) . '" /><input type="submit" value=" ' . htmlspecialchars($row[table_name]) .'  "/></form>'."<br>";
