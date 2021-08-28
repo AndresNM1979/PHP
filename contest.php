@@ -14,9 +14,9 @@ if(isset($_SESSION['un']))
   $username=$_SESSION['un'];
 }
 
-$mysql="SELECT  status from user WHERE name='$username'";
-$snd=mysqli_query($con,$mysql);
-$arrow=mysqli_fetch_array($snd);
+$postgres="SELECT  status from user WHERE name='$username'";
+$snd=postgresi_query($con,$postgres);
+$arrow=postgresi_fetch_array($snd);
 
 $st=$arrow['status'];
 
@@ -207,23 +207,23 @@ $owner=$username;
 $q1="INSERT into rapl_oj_contest  VALUES('$cid','$contest','$start','$end','$date','$owner')";
 $q3="SELECT * FROM rapl_oj_contest ORDER BY date_on DESC";
 
-/*$sq1=mysqli_query($con,$q1);*/
-$sq2=mysqli_query($con,$q1);
+/*$sq1=postgresi_query($con,$q1);*/
+$sq2=postgresi_query($con,$q1);
 
 if(!$sq2)
 {
   echo "not";
 }
 
-$sq3=mysqli_query($con,$q3);
+$sq3=postgresi_query($con,$q3);
 
       $q4="SELECT TIME_FORMAT(end_at,'%H') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
        $q5="SELECT TIME_FORMAT(end_at,'%i') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
         $q6="SELECT TIME_FORMAT(end_at,'%s') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
 
-      $sq4=mysqli_query($con,$q4);
-      $sq5=mysqli_query($con,$q5);
-      $sq6=mysqli_query($con,$q6);
+      $sq4=postgresi_query($con,$q4);
+      $sq5=postgresi_query($con,$q5);
+      $sq6=postgresi_query($con,$q6);
       
 
 
@@ -233,7 +233,7 @@ $sq3=mysqli_query($con,$q3);
 
       
    
-  while($row=mysqli_fetch_array($sq3))
+  while($row=postgresi_fetch_array($sq3))
     {
       $d=date("Y-m-d");
       $t=date("H:i:s");
@@ -243,9 +243,9 @@ $sq3=mysqli_query($con,$q3);
 
       $i++;
       $demo="demo".$i;
-      $nr=mysqli_fetch_array($sq4);
-      $nm=mysqli_fetch_array($sq5);
-      $ns=mysqli_fetch_array($sq6);
+      $nr=postgresi_fetch_array($sq4);
+      $nm=postgresi_fetch_array($sq5);
+      $ns=postgresi_fetch_array($sq6);
       
       $shr=$nr['end_at'];
       $shm=$nm['end_at'];
@@ -312,15 +312,15 @@ $sq3=mysqli_query($con,$q3);
 
    
 
-/*while($row=mysqli_fetch_array($sq3))
+/*while($row=postgresi_fetch_array($sq3))
 {
       $d=date("Y-m-d");
       $t=date("H:i:s");
       $m=$row['start_at'];
 
-      $nr=mysqli_fetch_array($sq4);
-      $nm=mysqli_fetch_array($sq5);
-      $ns=mysqli_fetch_array($sq6);
+      $nr=postgresi_fetch_array($sq4);
+      $nm=postgresi_fetch_array($sq5);
+      $ns=postgresi_fetch_array($sq6);
 
       $shr=$nr['end_at'];
       $shm=$nm['end_at'];
@@ -403,22 +403,22 @@ if(isset($_POST['update']))
 
     $eft="UPDATE rapl_oj_contest SET cname='$contest',start_at='$start',end_at='$end',date_on='$date' WHERE  id=$cid";
 
-    $sft=mysqli_query($con,$eft);
+    $sft=postgresi_query($con,$eft);
 
 
     if($sft)
     {
 
     $q3="SELECT * FROM rapl_oj_contest ORDER BY date_on DESC";
-    $sq3=mysqli_query($con,$q3);
+    $sq3=postgresi_query($con,$q3);
 
       $q4="SELECT TIME_FORMAT(end_at,'%H') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
        $q5="SELECT TIME_FORMAT(end_at,'%i') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
         $q6="SELECT TIME_FORMAT(end_at,'%s') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
 
-      $sq4=mysqli_query($con,$q4);
-      $sq5=mysqli_query($con,$q5);
-      $sq6=mysqli_query($con,$q6);
+      $sq4=postgresi_query($con,$q4);
+      $sq5=postgresi_query($con,$q5);
+      $sq6=postgresi_query($con,$q6);
        
 
 
@@ -427,7 +427,7 @@ if(isset($_POST['update']))
 
       
    
-  while($row=mysqli_fetch_array($sq3))
+  while($row=postgresi_fetch_array($sq3))
     {
       $d=date("Y-m-d");
       $t=date("H:i:s");
@@ -437,9 +437,9 @@ if(isset($_POST['update']))
 
       $i++;
       $demo="demo".$i;
-      $nr=mysqli_fetch_array($sq4);
-      $nm=mysqli_fetch_array($sq5);
-      $ns=mysqli_fetch_array($sq6);
+      $nr=postgresi_fetch_array($sq4);
+      $nm=postgresi_fetch_array($sq5);
+      $ns=postgresi_fetch_array($sq6);
       
       $shr=$nr['end_at'];
       $shm=$nm['end_at'];
@@ -531,21 +531,21 @@ if(isset($_POST['delete']))
 
 
     $efetch="DELETE FROM rapl_oj_contest WHERE id=$cid";
-    $sendfetch=mysqli_query($con,$efetch);
+    $sendfetch=postgresi_query($con,$efetch);
 
     if($sendfetch)
     {
 
       $q3="SELECT * FROM rapl_oj_contest ORDER BY date_on DESC";
-      $sq3=mysqli_query($con,$q3);
+      $sq3=postgresi_query($con,$q3);
 
       $q4="SELECT TIME_FORMAT(end_at,'%H') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
        $q5="SELECT TIME_FORMAT(end_at,'%i') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
         $q6="SELECT TIME_FORMAT(end_at,'%s') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
 
-      $sq4=mysqli_query($con,$q4);
-      $sq5=mysqli_query($con,$q5);
-      $sq6=mysqli_query($con,$q6);
+      $sq4=postgresi_query($con,$q4);
+      $sq5=postgresi_query($con,$q5);
+      $sq6=postgresi_query($con,$q6);
        
 
 
@@ -554,7 +554,7 @@ if(isset($_POST['delete']))
 
       
    
-  while($row=mysqli_fetch_array($sq3))
+  while($row=postgresi_fetch_array($sq3))
     {
       $d=date("Y-m-d");
       $t=date("H:i:s");
@@ -564,9 +564,9 @@ if(isset($_POST['delete']))
 
       $i++;
       $demo="demo".$i;
-      $nr=mysqli_fetch_array($sq4);
-      $nm=mysqli_fetch_array($sq5);
-      $ns=mysqli_fetch_array($sq6);
+      $nr=postgresi_fetch_array($sq4);
+      $nm=postgresi_fetch_array($sq5);
+      $ns=postgresi_fetch_array($sq6);
       
       $shr=$nr['end_at'];
       $shm=$nm['end_at'];
@@ -654,15 +654,15 @@ if(!isset($_POST['cn']) && !isset($_POST['update']) && !isset($_POST['delete']))
     /*$q3="SELECT table_name FROM information_schema.tables where table_schema='problem' AND table_name<>'element'";*/
 
     $q3="SELECT * FROM rapl_oj_contest ORDER BY date_on DESC";
-    $sq3=mysqli_query($con,$q3);
+    $sq3=postgresi_query($con,$q3);
 
       $q4="SELECT TIME_FORMAT(end_at,'%H') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
        $q5="SELECT TIME_FORMAT(end_at,'%i') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
         $q6="SELECT TIME_FORMAT(end_at,'%s') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
 
-      $sq4=mysqli_query($con,$q4);
-      $sq5=mysqli_query($con,$q5);
-      $sq6=mysqli_query($con,$q6);
+      $sq4=postgresi_query($con,$q4);
+      $sq5=postgresi_query($con,$q5);
+      $sq6=postgresi_query($con,$q6);
        
 
 
@@ -671,7 +671,7 @@ if(!isset($_POST['cn']) && !isset($_POST['update']) && !isset($_POST['delete']))
 
       
    
-  while($row=mysqli_fetch_array($sq3))
+  while($row=postgresi_fetch_array($sq3))
     {
       $d=date("Y-m-d");
       $t=date("H:i:s");
@@ -681,9 +681,9 @@ if(!isset($_POST['cn']) && !isset($_POST['update']) && !isset($_POST['delete']))
 
       $i++;
       $demo="demo".$i;
-      $nr=mysqli_fetch_array($sq4);
-      $nm=mysqli_fetch_array($sq5);
-      $ns=mysqli_fetch_array($sq6);
+      $nr=postgresi_fetch_array($sq4);
+      $nm=postgresi_fetch_array($sq5);
+      $ns=postgresi_fetch_array($sq6);
       
       $shr=$nr['end_at'];
       $shm=$nm['end_at'];
