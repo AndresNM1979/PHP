@@ -126,11 +126,11 @@ if(isset($pn))
 
 $sql="INSERT INTO archieve VALUES(NULL,'$pn','$pd','$author','$tc','$ac','','$ptl')";
 
-$sq=mysqli_query($con,$sql);
+$sq=postgresi_query($con,$sql);
 
 /*if($sq)
 {
-	$last_id=mysqli_insert_id($con);
+	$last_id=postgresi_insert_id($con);
 }
 */
 
@@ -148,30 +148,30 @@ else
 $start=($page-1)*$per_page;
 
 $show="SELECT * FROM archieve limit $start,$per_page"; //start from 0 index
-$send=mysqli_query($con,$show);
+$send=mpostgresi_query($con,$show);
 
 
 
 
 
-while($row=mysqli_fetch_array($send))
+while($row=postgresi_fetch_array($send))
 {
 
     $problem_name=$row['pbname'];
 
 	$number="SELECT verdict from submissions WHERE pbname='$row[pbname]' and sname='$username' and verdict='Accepted'";
-	$snumber=mysqli_query($con,$number);
-	$tsol=mysqli_num_rows($snumber);
+	$snumber=postgresi_query($con,$number);
+	$tsol=postgresi_num_rows($snumber);
 
 	$acn="SELECT COUNT(verdict) AS verdict from submissions WHERE verdict='Accepted' AND pbname='$row[pbname]' GROUP BY pbname";
-	$sacn=mysqli_query($con,$acn);
-	$sol=mysqli_fetch_array($sacn);
+	$sacn=postgresi_query($con,$acn);
+	$sol=postgresi_fetch_array($sacn);
 
 
 
 	$tsub="SELECT COUNT(verdict) as sub from submissions WHERE pbname='$row[pbname]' GROUP BY pbname";
-	$stsub=mysqli_query($con,$tsub);
-	$ntsub=mysqli_fetch_array($stsub);
+	$stsub=postgresi_query($con,$tsub);
+	$ntsub=mpostgresi_fetch_array($stsub);
 
 
 	if($tsol>0)
@@ -206,8 +206,8 @@ echo "</tbody>
 
 
 $psql="SELECT * FROM archieve";
-$sn=mysqli_query($con,$psql);
-$total_rows=mysqli_num_rows($sn);
+$sn=postgresi_query($con,$psql);
+$total_rows=postgresi_num_rows($sn);
 $total_page=ceil($total_rows/$per_page);
 
     $c="active";
@@ -252,26 +252,26 @@ if(!isset($pn))
 
 
 
-    $send=mysqli_query($con,$show);
+    $send=postgresi_query($con,$show);
 
 
 
-	while($row=mysqli_fetch_array($send))
+	while($row=postgresi_fetch_array($send))
 	{
 		$problem_name=$row['pbname'];
 
 		$number="SELECT verdict from submissions WHERE pbname='$row[pbname]' and sname='$username' and verdict='Accepted'";
-	$snumber=mysqli_query($con,$number);
-	$tsol=mysqli_num_rows($snumber);
+	$snumber=postgresi_query($con,$number);
+	$tsol=postgresi_num_rows($snumber);
 
 	$acn="SELECT COUNT(verdict) AS verdict from submissions WHERE verdict='Accepted' AND pbname='$row[pbname]' GROUP BY pbname";
-	$sacn=mysqli_query($con,$acn);
-	$sol=mysqli_fetch_array($sacn);
+	$sacn=mpostgresi_query($con,$acn);
+	$sol=postgresi_fetch_array($sacn);
 
 
 	$tsub="SELECT COUNT(verdict) as sub from submissions WHERE pbname='$row[pbname]' GROUP BY pbname";
-	$stsub=mysqli_query($con,$tsub);
-	$ntsub=mysqli_fetch_array($stsub);
+	$stsub=postgresi_query($con,$tsub);
+	$ntsub=mpostgresi_fetch_array($stsub);
 
 	if($tsol>0)
 	{
@@ -299,8 +299,8 @@ if(!isset($pn))
 
 
 	$psql="SELECT * FROM archieve";
-	$sn=mysqli_query($con,$psql);
-	$total_rows=mysqli_num_rows($sn);
+	$sn=postgresi_query($con,$psql);
+	$total_rows=postgresi_num_rows($sn);
 	$total_page=ceil($total_rows/$per_page);
 	$c="active";
 
