@@ -29,9 +29,9 @@ if(isset($_GET['id']))
 
 $sql="SELECT * FROM archieve WHERE id='$problemid' ";
 
-$sq=mysqli_query($con,$sql);
+$sq=postgresi_query($con,$sql);
 
-$row=mysqli_fetch_array($sq);
+$row=postgresi_fetch_array($sq);
 
 
 
@@ -173,7 +173,6 @@ $row=mysqli_fetch_array($sq);
 <div class="">
 
 <b>Beta Version-2016</b><br>
-<b>Developed By Ashadullah Shawon</b>
 
 </div>
 </div>
