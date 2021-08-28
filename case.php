@@ -39,13 +39,13 @@ $sql="INSERT INTO submission VALUES('','$us', '$result') ";
 $nsql="INSERT into code VALUES('us','$sc','')";
 $show="SELECT * FROM submission";
 
-$stq=mysqli_query($con,$sql);
-$send=mysqli_query($con,$nsql);
-$sts=mysqli_query($con,$show);
+$stq=postgresi_query($con,$sql);
+$send=postgresi_query($con,$nsql);
+$sts=postgresi_query($con,$show);
 
 
 
-while($row=mysqli_fetch_array($sts))
+while($row=postgresi_fetch_array($sts))
 {
 
 	echo "<div style=\"margin-left:300px; margin-right:200px; padding-left:200px;border-bottom:1px solid black;\"> <a href=\"showcode.php?id=$row[sid]&nm=$row[sname]\">$row[sid]</a>.......<a href=\"profile.php?user=$row[sname]\">$row[sname]</a>---------$row[verdict]</div>";
