@@ -79,8 +79,8 @@ if(isset($_GET['id']))
 {
     $conid=$_GET['id'];
     $mycon="SELECT * from rapl_oj_contest WHERE id='$conid'";
-    $sendcon=mysqli_query($con,$mycon);
-    $rhis=mysqli_fetch_array($sendcon);
+    $sendcon=postgresi_query($con,$mycon);
+    $rhis=postgresi_fetch_array($sendcon);
 
 
 }
@@ -133,9 +133,9 @@ ORDER BY `Solved`  DESC ";*/
 
 $sql="SELECT sname, SUM(status) As Solved, SUM(point) As Points FROM submission Where cid='$conid' GROUP BY sname ORDER BY Solved DESC , Points DESC";
 
-$send=mysqli_query($con,$sql);
+$send=postgresi_query($con,$sql);
 $i=0;
-while($row=mysqli_fetch_array($send))
+while($row=postgresi_fetch_array($send))
 {
   $i++;
   echo "<tr><td>$i</td><td><a href=\"profile.php?user=$row[sname]\">$row[sname]</a></td><td>$row[Solved]</td><td>$row[Points]</td><td><a href=\"contestsubmission.php?id=$conid&show=$row[sname]\"><div class=\"btn btn-primary btn-xs\">Show</td></tr>";
@@ -170,8 +170,7 @@ while($row=mysqli_fetch_array($send))
 <div class="">
 
 <b>Beta Version-2016</b><br>
-<b>Developed By Ashadullah Shawon</b>
-
+  
 </div>
 </div>
 
