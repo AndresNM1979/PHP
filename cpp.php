@@ -270,7 +270,7 @@ else if($_POST['src'])
 
 	$isql="SELECT * FROM element WHERE pbid='$pid'";
 	$si=postgresi_query($con,$isql);
-	$r4=mpostgresi_fetch_array($si);
+	$r4=postgresi_fetch_array($si);
 
 	$limit=$r4['tlimit'];
 
