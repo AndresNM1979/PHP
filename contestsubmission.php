@@ -17,9 +17,9 @@ if(isset($_SESSION['un']))
 }
 
 
-$mysql="SELECT  status from user WHERE name='$username'";
-$snd=mysqli_query($con,$mysql);
-$arrow=mysqli_fetch_array($snd);
+$postgres="SELECT  status from user WHERE name='$username'";
+$snd=postgresi_query($con,$postgres);
+$arrow=postgresi_fetch_array($snd);
 
 $st=$arrow['status'];
 
@@ -103,8 +103,8 @@ if(isset($_GET['id']))
 {
     $conid=$_GET['id'];
     $mycon="SELECT * from rapl_oj_contest WHERE id='$conid'";
-    $sendcon=mysqli_query($con,$mycon);
-    $rhis=mysqli_fetch_array($sendcon);
+    $sendcon=postgresi_query($con,$mycon);
+    $rhis=postgresi_fetch_array($sendcon);
 
 
    echo "<center><a class=\"btn btn-primary\" href=\"contestproblem.php?name=$rhis[cname]\">$rhis[cname]</a></center>";
@@ -127,8 +127,8 @@ if(isset($_GET['id']))
  $ci=$_POST['id'];
 
  $fowner="SELECT  owner from rapl_oj_contest where id='$ci'";
- $sendit=mysqli_query($con,$fowner);
- $frow=mysqli_fetch_array($sendit);
+ $sendit=postgresi_query($con,$fowner);
+ $frow=postgresi_fetch_array($sendit);
  $owner=$frow['owner'];
 
  if($username==$owner)
@@ -162,8 +162,8 @@ if(isset($_GET['id']))
  $ci=$_GET['id'];
 
  $fowner="SELECT  owner from rapl_oj_contest where id='$ci'";
- $sendit=mysqli_query($con,$fowner);
- $frow=mysqli_fetch_array($sendit);
+ $sendit=postgresi_query($con,$fowner);
+ $frow=postgresi_fetch_array($sendit);
  $owner=$frow['owner'];
 
  if($username==$owner)
@@ -259,13 +259,13 @@ if(isset($_GET['id']) && !isset($_GET['show']))
    $show="SELECT * FROM submission WHERE cid='$conid' ORDER BY sid DESC limit $start,$per_page";
 
    
-   $sts=mysqli_query($con,$show);
+   $sts=postgresi_query($con,$show);
 
    $sql="SELECT sname, SUM(status) As Solved, SUM(point) As Points FROM submission Where cid='$conid' GROUP BY sname ORDER BY Solved DESC , Points DESC";
 
-   $send=mysqli_query($con,$sql);
+   $send=mpostgresi_query($con,$sql);
    $i=0;
-   while($bow=mysqli_fetch_array($send))
+   while($bow=postgresi_fetch_array($send))
    {
        $i++;
 
@@ -279,7 +279,7 @@ if(isset($_GET['id']) && !isset($_GET['show']))
 
 
 
-while($row=mysqli_fetch_array($sts))
+while($row=postgresi_fetch_array($sts))
 {
 
   if($row['verdict']=="Accepted")
@@ -305,8 +305,8 @@ while($row=mysqli_fetch_array($sts))
 </div>";
 
   $psql="SELECT * FROM submission WHERE cid='$conid' ORDER BY sid DESC";
-  $sn=mysqli_query($con,$psql);
-  $total_rows=mysqli_num_rows($sn);
+  $sn=postgresi_query($con,$psql);
+  $total_rows=postgresi_num_rows($sn);
   $total_page=ceil($total_rows/$per_page);
   $c="active";
 
@@ -358,23 +358,23 @@ if(isset($_GET['id']) && isset($_GET['show']))
    $show="SELECT * FROM submission WHERE cid='$conid' AND sname='$suser' ORDER BY sid DESC limit $start,$per_page";
 
    
-   $sts=mysqli_query($con,$show);
-   $detect=mysqli_num_rows($sts);
+   $sts=postgresi_query($con,$show);
+   $detect=postgresi_num_rows($sts);
 
    $ts="SELECT DISTINCT sname, COUNT(verdict) AS verdict FROM ( SELECT * FROM submission where verdict='Accepted' AND cid='$conid' AND sname='$suser' GROUP BY pbname, sname)T1 GROUP BY sname";
 
-   $stss=mysqli_query($con,$ts);
+   $stss=mpostgresi_query($con,$ts);
 
-   $solved=mysqli_fetch_array($stss);
+   $solved=postgresi_fetch_array($stss);
 
    $tsolved=$solved['verdict'];
 
 
    $sql="SELECT sname, SUM(status) As Solved, SUM(point) As Points FROM submission Where cid='$conid' GROUP BY sname ORDER BY Solved DESC , Points DESC";
 
-   $send=mysqli_query($con,$sql);
+   $send=postgresi_query($con,$sql);
    $i=0;
-   while($bow=mysqli_fetch_array($send))
+   while($bow=postgresi_fetch_array($send))
    {
        $i++;
 
@@ -390,7 +390,7 @@ if(isset($_GET['id']) && isset($_GET['show']))
 
 
 
-while($row=mysqli_fetch_array($sts))
+while($row=postgresi_fetch_array($sts))
 {
 
   if($row['verdict']=="Accepted")
@@ -429,8 +429,8 @@ else
  echo "<div class=\"alert alert-success\">$suser's Total Submission=$detect</div>";
 
   $psql="SELECT * FROM submission WHERE cid='$conid' AND sname='$suser' ORDER BY sid DESC";
-  $sn=mysqli_query($con,$psql);
-  $total_rows=mysqli_num_rows($sn);
+  $sn=postgresi_query($con,$psql);
+  $total_rows=postgresi_num_rows($sn);
   $total_page=ceil($total_rows/$per_page);
   $c="active";
 
@@ -464,39 +464,39 @@ if(isset($_POST['id']))
 
     $sqlp="SELECT * FROM element WHERE pbid='$cid'";
 
-    $sqp=mysqli_query($con,$sqlp);
+    $sqp=postgresi_query($con,$sqlp);
 
-    $rowp=mysqli_fetch_array($sqp);
+    $rowp=postgresi_fetch_array($sqp);
 
 
 
    $conid=$rowp['id'];
 
    $q3="SELECT * FROM rapl_oj_contest WHERE id='$conid'";
-    $sq3=mysqli_query($con,$q3);
+    $sq3=postgresi_query($con,$q3);
 
       $q4="SELECT TIME_FORMAT(end_at,'%H') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
        $q5="SELECT TIME_FORMAT(end_at,'%i') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
         $q6="SELECT TIME_FORMAT(end_at,'%s') end_at FROM rapl_oj_contest  ORDER BY date_on DESC";
 
 
-      $sq4=mysqli_query($con,$q4);
-      $sq5=mysqli_query($con,$q5);
-      $sq6=mysqli_query($con,$q6);
+      $sq4=postgresi_query($con,$q4);
+      $sq5=postgresi_query($con,$q5);
+      $sq6=mpostgresi_query($con,$q6);
       
 
       
    
-  while($rowp=mysqli_fetch_array($sq3))
+  while($rowp=postgresi_fetch_array($sq3))
     {
       $d=date("Y-m-d");
       $t=date("Y-m-d H:i:s");
       $m=$rowp['start_at'];
 
 
-      $nr=mysqli_fetch_array($sq4);
-      $nm=mysqli_fetch_array($sq5);
-      $ns=mysqli_fetch_array($sq6);
+      $nr=postgresi_fetch_array($sq4);
+      $nm=postgresi_fetch_array($sq5);
+      $ns=postgresi_fetch_array($sq6);
 
       $shr=$nr['end_at'];
       $shm=$nm['end_at'];
@@ -559,10 +559,10 @@ if(isset($_POST['id']))
 
 $query="SELECT output FROM element WHERE pbid='$cid'";
 $quo="SELECT * FROM element WHERE pbid='$cid'";
-$sq=mysqli_query($con,$query);
-$sq1=mysqli_query($con,$quo);
-$r3=mysqli_fetch_array($sq);
-$r4=mysqli_fetch_array($sq1);
+$sq=postgresi_query($con,$query);
+$sq1=postgresi_query($con,$quo);
+$r3=postgresi_fetch_array($sq);
+$r4=postgresi_fetch_array($sq1);
 
 $ao=$r3['output'];
 $to=$r4['uoutput'];
@@ -575,8 +575,8 @@ $ignore=0;
 //var_dump($ao);
 
 $checkq="SELECT * FROM submission WHERE pbname='$proname' AND cid='$conid' AND sname='$username' AND status='1'";
-$scheckq=mysqli_query($con,$checkq);
-$detect=mysqli_num_rows($scheckq);
+$scheckq=postgresi_query($con,$checkq);
+$detect=postgresi_num_rows($scheckq);
 if($detect>=1)
 {
    
@@ -646,7 +646,7 @@ else
 if($ignore==0)
 {
    $sql="INSERT INTO submission VALUES('$nid','$username','$result','$pname','$conid','$count','$mpoint')";
-   $stq=mysqli_query($con,$sql);
+   $stq=postgresi_query($con,$sql);
 }
 else
 {
@@ -658,14 +658,14 @@ else
 
 $show="SELECT * FROM submission WHERE cid='$conid' ORDER BY sid DESC limit $start,$per_page";
 
-$sts=mysqli_query($con,$show);
+$sts=postgresi_query($con,$show);
 
 /*$tsub="SELECT * FROM submission WHERE pbname='$proname' AND cid='$conid' AND sname='$username'";
-$stsub=mysqli_query($con,$tsub);
-$detect=mysqli_num_rows($stsub);*/
+$stsub=postgresi_query($con,$tsub);
+$detect=postgresi_num_rows($stsub);*/
 
 
-while($row=mysqli_fetch_array($sts))
+while($row=postgresi_fetch_array($sts))
 {
 
   if($row['verdict']=="Accepted")
@@ -694,8 +694,8 @@ while($row=mysqli_fetch_array($sts))
 </div>";
   
   $psql="SELECT * FROM submission WHERE cid='$conid' ORDER BY sid DESC";
-  $sn=mysqli_query($con,$psql);
-  $total_rows=mysqli_num_rows($sn);
+  $sn=postgresi_query($con,$psql);
+  $total_rows=postgresi_num_rows($sn);
   $total_page=ceil($total_rows/$per_page);
   $c="active";
 
