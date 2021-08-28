@@ -261,7 +261,7 @@ $q3="SELECT * FROM rapl_oj_contest ORDER BY date_on DESC LIMIT 0,2";
 
 <div class="col-sm-4">
 <?php
-date_default_timezone_set("Asia/Dhaka");
+date_default_timezone_set("europe/madrid");
  $t=date("H:i:s");
 echo"<b>Server Time:  $t</b>";
 
