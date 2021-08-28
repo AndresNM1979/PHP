@@ -93,9 +93,9 @@ else
 
 
 
-$sq=mysqli_query($con,$sql);
+$sq=postgresi_query($con,$sql);
 
-$row=mysqli_fetch_array($sq);
+$row=postgresi_fetch_array($sq);
 
 
 
