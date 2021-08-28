@@ -395,7 +395,7 @@ else if($_POST['src'])
 			$cnd=postgresi_query($con,$csql);
 			$sq3=postgresi_query($con,$q3);
 			$r2=postgresi_fetch_array($cnd);
-			$r4=mpostgresi_fetch_array($sq3);
+			$r4=postgresi_fetch_array($sq3);
 
 
 
