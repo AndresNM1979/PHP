@@ -131,11 +131,11 @@ $get=$_GET['id'];
 
 $show="SELECT * FROM codes WHERE id='$get'";
 
-$sq=mysqli_query($con,$show);
+$sq=postgresi_query($con,$show);
 
 echo "Submitted By : $data<br><br>";
 
-while($row=mysqli_fetch_array($sq))
+while($row=postgresi_fetch_array($sq))
 {
 	echo("Submit Id: $row[id]<br><br><textarea id='div' class=\"form-control\" rows=\"50\" cols=\"40\">$row[source_code]</textarea>");
 }
@@ -166,7 +166,6 @@ while($row=mysqli_fetch_array($sq))
 <div class="fm">
 
 <b>Beta Version-2016</b><br>
-<b>Developed By Ashadullah Shawon</b>
 
 </div>
 </div>
