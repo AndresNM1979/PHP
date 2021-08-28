@@ -141,11 +141,11 @@ if(!isset($_POST['id']) && !isset($_GET['name']))
    $show="SELECT * FROM submissions ORDER BY sid DESC limit $start,$per_page";
 
    
-   $sts=mysqli_query($con,$show);
+   $sts=postgresi_query($con,$show);
 
 
 
-while($row=mysqli_fetch_array($sts))
+while($row=postgresi_fetch_array($sts))
 {
 
   if($row['verdict']=="Accepted")
@@ -172,8 +172,8 @@ while($row=mysqli_fetch_array($sts))
 </div>";
 
   $psql="SELECT * FROM submissions ORDER BY sid DESC";
-  $sn=mysqli_query($con,$psql);
-  $total_rows=mysqli_num_rows($sn);
+  $sn=postgresi_query($con,$psql);
+  $total_rows=postgresi_num_rows($sn);
   $total_page=ceil($total_rows/$per_page);
   $c="active";
 
@@ -222,11 +222,11 @@ if(isset($_GET['name']))
    $show="SELECT * FROM submissions WHERE sname='$name' ORDER BY sid DESC limit $start,$per_page";
 
    
-   $sts=mysqli_query($con,$show);
+   $sts=postgresi_query($con,$show);
 
 
 
-while($row=mysqli_fetch_array($sts))
+while($row=postgresi_fetch_array($sts))
 {
 
   if($row['verdict']=="Accepted")
@@ -252,8 +252,8 @@ while($row=mysqli_fetch_array($sts))
 </div>";
 
   $psql="SELECT * FROM submissions WHERE sname='$name' ORDER BY sid DESC";
-  $sn=mysqli_query($con,$psql);
-  $total_rows=mysqli_num_rows($sn);
+  $sn=postgresi_query($con,$psql);
+  $total_rows=postgresi_num_rows($sn);
   $total_page=ceil($total_rows/$per_page);
   $c="active";
 
@@ -306,8 +306,8 @@ if(isset($_POST['id']))
 
 
 $query="SELECT output FROM archieve WHERE id='$cid'";
-$sq=mysqli_query($con,$query);
-$r3=mysqli_fetch_array($sq);
+$sq=postgresi_query($con,$query);
+$r3=postgresi_fetch_array($sq);
 
 $ao=$r3['output'];
 //var_dump($uo);
@@ -368,12 +368,12 @@ $sql="INSERT INTO submissions VALUES('$nid','$username','$result','$pname','$cpu
 $show="SELECT * FROM submissions ORDER BY sid DESC limit $start,$per_page";
 
 
-$stq=mysqli_query($con,$sql);
-$sts=mysqli_query($con,$show);
+$stq=postgresi_query($con,$sql);
+$sts=postgresi_query($con,$show);
 
 
 
-while($row=mysqli_fetch_array($sts))
+while($row=postgresi_fetch_array($sts))
 {
 
   if($row['verdict']=="Accepted")
@@ -400,8 +400,8 @@ while($row=mysqli_fetch_array($sts))
 </div>";
 
   $psql="SELECT * FROM submissions ORDER BY sid DESC";
-  $sn=mysqli_query($con,$psql);
-  $total_rows=mysqli_num_rows($sn);
+  $sn=postgresi_query($con,$psql);
+  $total_rows=postgresi_num_rows($sn);
   $total_page=ceil($total_rows/$per_page);
   $c="active";
 
