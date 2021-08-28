@@ -104,8 +104,8 @@ $us=$_SESSION['un'];
 
 
 $isql="SELECT * FROM archieve WHERE id='$pid'";
-$si=mysqli_query($con,$isql);
-$r4=mysqli_fetch_array($si);
+$si=postgresi_query($con,$isql);
+$r4=postgresi_fetch_array($si);
 
 $limit=$r4['tlimit'];
 
@@ -145,8 +145,8 @@ $limit=$r4['tlimit'];
 
     $sql="SELECT output FROM archieve WHERE id='$pid'";
 
-    $sq=mysqli_query($con,$sql);
-    $row=mysqli_fetch_array($sq);
+    $sq=postgresi_query($con,$sql);
+    $row=postgresi_fetch_array($sq);
 
     $executionStartTime = microtime(true);
 	if(trim($error)=="")
@@ -222,12 +222,12 @@ $limit=$r4['tlimit'];
 		$usql="UPDATE archieve SET uoutput='$output' WHERE id='$pid'";
 		$csql="SELECT uoutput FROM archieve WHERE id='$pid'";
 		$q3="SELECT id FROM codes ORDER BY id DESC ";
-		$snq=mysqli_query($con,$nsql);
-		$snd=mysqli_query($con,$usql);
-		$cnd=mysqli_query($con,$csql);
-		$sq3=mysqli_query($con,$q3);
-		$r2=mysqli_fetch_array($cnd);
-		$r4=mysqli_fetch_array($sq3);
+		$snq=postgresi_query($con,$nsql);
+		$snd=postgresi_query($con,$usql);
+		$cnd=postgresi_query($con,$csql);
+		$sq3=postgresi_query($con,$q3);
+		$r2=postgresi_fetch_array($cnd);
+		$r4=postgresi_fetch_array($sq3);
 
 
 
@@ -269,8 +269,8 @@ else if($_POST['src'])
 	$ce=0;
 
 	$isql="SELECT * FROM element WHERE pbid='$pid'";
-	$si=mysqli_query($con,$isql);
-	$r4=mysqli_fetch_array($si);
+	$si=postgresi_query($con,$isql);
+	$r4=mpostgresi_fetch_array($si);
 
 	$limit=$r4['tlimit'];
 
@@ -313,8 +313,8 @@ else if($_POST['src'])
 
 
 	$sql="SELECT output FROM element WHERE pbid='$pid'";
-    $sq=mysqli_query($con,$sql);
-    $row=mysqli_fetch_array($sq);
+    $sq=postgresi_query($con,$sql);
+    $row=postgresi_fetch_array($sq);
 
 
     $executionStartTime = microtime(true);
@@ -389,12 +389,12 @@ else if($_POST['src'])
 			$usql="UPDATE element SET uoutput='$output' WHERE pbid='$pid'";
 			$csql="SELECT uoutput FROM element WHERE pbid='$pid'";
 			$q3="SELECT id FROM code ORDER BY id DESC ";
-			$snq=mysqli_query($con,$nsql);
-			$snd=mysqli_query($con,$usql);
-			$cnd=mysqli_query($con,$csql);
-			$sq3=mysqli_query($con,$q3);
-			$r2=mysqli_fetch_array($cnd);
-			$r4=mysqli_fetch_array($sq3);
+			$snq=postgresi_query($con,$nsql);
+			$snd=postgresi_query($con,$usql);
+			$cnd=postgresi_query($con,$csql);
+			$sq3=postgresi_query($con,$q3);
+			$r2=postgresi_fetch_array($cnd);
+			$r4=postgresi_fetch_array($sq3);
 
 
 
@@ -437,7 +437,6 @@ else if($_POST['src'])
 <div class="fm">
 
 <b>Beta Version-2016</b><br>
-<b>Developed By Ashadullah Shawon</b>
 
 </div>
 </div>
